@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: n8n-miami
+    runtime: docker
+    plan: free
+    autoDeploy: false
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: true
+      - key: N8N_BASIC_AUTH_USER
+        value: admin
+      - key: N8N_BASIC_AUTH_PASSWORD
+        generateValue: true
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: N8N_HOST
+        value: n8n-miami.onrender.com
+      - key: N8N_PORT
+        value: 5678
+      - key: N8N_PROTOCOL
+        value: https
+      - key: WEBHOOK_URL
+        value: https://n8n-miami.onrender.com/
+      - key: GENERIC_TIMEZONE
+        value: Africa/Johannesburg
+      - key: TZ
+        value: Africa/Johannesburg
+      - key: DB_TYPE
+        value: sqlite
+      - key: DB_SQLITE_VACUUM_ON_STARTUP
+        value: true
+      - key: EXECUTIONS_MODE
+        value: regular
+      - key: EXECUTIONS_TIMEOUT
+        value: 3600
+      - key: N8N_METRICS
+        value: false
+      - key: N8N_PUBLIC_API_DISABLED
+        value: true
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
