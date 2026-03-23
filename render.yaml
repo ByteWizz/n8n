@@ -27,8 +27,6 @@ services:
         value: Africa/Johannesburg
       - key: DB_TYPE
         value: sqlite
-      - key: DB_SQLITE_VACUUM_ON_STARTUP
-        value: true
       - key: EXECUTIONS_MODE
         value: regular
       - key: EXECUTIONS_TIMEOUT
@@ -37,7 +35,3 @@ services:
         value: false
       - key: N8N_PUBLIC_API_DISABLED
         value: true
-    disk:
-      name: n8n-data
-      mountPath: /home/node/.n8n
-      sizeGB: 1
