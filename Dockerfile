@@ -1,12 +1,9 @@
 FROM n8nio/n8n:latest
 
-# Create directory for SQLite database
-RUN mkdir -p /home/node/.n8n
+# Create data directory
+RUN mkdir -p /home/node/.n8n && chown -R node:node /home/node/.n8n
 
-# Set proper permissions
-RUN chown -R node:node /home/node/.n8n
-
-# Switch to node user
+# Switch to non-root user (required by Render)
 USER node
 
 # Expose n8n port
