@@ -4,7 +4,6 @@ services:
     runtime: docker
     plan: free
     autoDeploy: false
-    healthCheckPath: /healthz
     envVars:
       - key: N8N_HOST
         value: n8n-miami.onrender.com
@@ -18,13 +17,14 @@ services:
         value: sqlite
       - key: DB_SQLITE_DATABASE
         value: /home/node/.n8n/database.sqlite
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: "false"
       - key: GENERIC_TIMEZONE
         value: UTC
       - key: N8N_SECURE_COOKIE
         value: "true"
-      # Security variables - you MUST update these after first deploy
       - key: N8N_ENCRYPTION_KEY
-        generateValue: true  # Render will auto-generate this
+        generateValue: true
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
