@@ -2,7 +2,7 @@ services:
   - type: web
     name: n8n-miami
     runtime: docker
-    plan: free
+    plan: free  # or starter/standard for paid
     autoDeploy: false
     envVars:
       - key: N8N_HOST
@@ -17,15 +17,12 @@ services:
         value: sqlite
       - key: DB_SQLITE_DATABASE
         value: /home/node/.n8n/database.sqlite
-      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
-        value: "false"
-      - key: GENERIC_TIMEZONE
-        value: UTC
-      - key: N8N_SECURE_COOKIE
-        value: "true"
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
+      # Critical for permissions
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: "false"
     disk:
       name: n8n-data
-      mountPath: /home/node/.n8n
+      mountPath: /home/node/.n8n  # ← CRITICAL! Must match n8n's data path
       sizeGB: 1
